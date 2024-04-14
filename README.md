@@ -1,0 +1,17 @@
+# Project for the random course tasks
+
+
+
+## AI generated yamls
+
+| NAME   | PROMPT   | DESCRIPTION   | EXAMPLE   |
+|--------|----------|---------------|-----------|
+| app.yaml | "create nginx pod, named app, labels app=demo, run=demo, container name=app, exposed port 8000, port name = http" | simple labeled pod | [app.yaml](./yaml/app.yaml) |
+| app-livenessProbe.yaml | "create nginx pod, named app, labels app=demo, run=demo, container name=app, exposed port 8000, port name = http, with container http liveness probe with delay 5, timeout 1, period 10 and failure threshold" | the same, but with liveness probe | [app-livenessProbe.yaml](./yaml/app-livenessProbe.yaml) |
+| app-readinessProbe.yaml | create nginx pod, named app, labels app=demo, run=demo, container name=app, exposed port 8000, port name = http, with container http liveness probe with delay 5, timeout 1, period 10 and failure threshold, readiness probe on path /ready with delay 5, timeout 1, period 10 and failure threshold | like previous, but with readiness probe | [app-readinessProbe.yaml](./yaml/app-readinessProbe.yaml) |
+| app-volumeMounts.yaml | "create nginx pod, named app, labels app=demo, run=demo, container name=app, exposed port 8000, port name = http, with container http liveness probe with delay 5, timeout 1, period 10 and failure threshold,  container readiness probe on path /ready with delay 5, timeout 1, period 10 and failure threshold, with volume mount /data and host path /var/lib/app " | the same, but with volume mount | [app-volumeMounts.yaml](./yaml/app-volumeMounts.yaml) |
+| app-cronjob.yaml | "create cronjob, named appp-cronjob, run every 5 minutes, image bash, containers name=hello, run command echo 'Hello world', template restart on failure" | simple hello-world cronjob | [app-cronjob.yaml](./yaml/app-cronjob.yaml) |
+| app-job.yaml | "create job named app-job-rsync, image google/cloud-sdk:275.0.0-alpine, container name=init , performs gsutil rsync mirror with deletion from gs://glow-sportradar/ to data-input volume mount /data/input, volume is glow-data-disk-200 ext4 gcePersistentDisk named data-sync, no restart, job backoff limit 0, no secrets" | job to sync data from GCP bucket to mounted storage | [app-job.yaml](./yaml/app-job.yaml) |
+| app-multicontainer.yaml | "create multicontainer pod, name=app-multi-containers, 1st is nginx serve the shared emptydir volume named 'html', 2nd is debian which updates content of index.html with new date output every second" | simple multicontainer pod, nginx serves, debian updates date | [app-multicontainer.yaml](./yaml/app-multicontainer.yaml) |
+| app-resources.yaml | "create nginx pod, named app-resource, container name=app, exposed port 8080, port name = http, with container http liveness probe with delay 5, timeout 1, period 10 and failure threshold,  container readiness probe on path /ready with delay 0, timeout 1, period 2 and failure and success threshold, resource request 100m CPU, 128M RAM, limits 100m CPU, 256M RAM, resources values in quotes " | simple pod with probes and difined resources values | [app-resources.yaml](./yaml/app-resources.yaml) |
+| app-secret-env.yaml | "create redis pod, named app-secret-env, container name=mycontainer, env secrets SECRET_USERNAME name=mysecret1 key=username, SECRET_PASSWORD name=mysecret1 key=password, no restarts " | simple pod with secrets | [app-secret-env.yaml](app-secret-env.yaml) |

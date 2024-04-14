@@ -1,0 +1,26 @@
+Here is the YAML for the requested Kubernetes manifest:
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+  labels:
+    app: demo
+    run: demo
+spec:
+  containers:
+  - name: app
+    image: nginx
+    ports:
+    - containerPort: 8000
+      name: http
+    livenessProbe:
+      httpGet:
+        path: /
+        port: http
+      initialDelaySeconds: 5
+      timeoutSeconds: 1
+      periodSeconds: 10
+      failureThreshold: 3
+
